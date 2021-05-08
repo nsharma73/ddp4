@@ -28,7 +28,7 @@ library(tidyverse)
 library(Lahman)
 ```
 
-## The data frame was constructed using various joins and filters
+## The data frame was constructed using various joins and filters, Batting Average is a calculation.
 
 See code below:
 
