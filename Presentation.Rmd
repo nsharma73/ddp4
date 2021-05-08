@@ -7,29 +7,58 @@ output: ioslides_presentation
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
 ```
 
 ## R Markdown
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+This is a baseball hall of fame (HOF) player search app. The app calculated the batting average using hits and at bats.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+The app allows users to select Players':
 
-## Slide with Bullets
+- The Country of Birth
+- Range of Weight (lbs) and Height (in)
+- Year admitted to HOF
+- Sorting by two key metrics
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+The user persona:
 
-## Slide with R Output
+- Baseball fans that would like to identify players within a height/weight range and country of birth
+
+## Technical Requirement - Libraries needed
+
+- library(shiny)
+- library(shinythemes)
+- library(shinyWidgets)
+- library(tidyverse)
+- library(Lahman)
+
+##  R Calculations (The Batting Average) and Output (example)
 
 ```{r cars, echo = TRUE}
-summary(cars)
+library(shiny)
+library(shinythemes)
+library(shinyWidgets)
+library(tidyverse)
+library(Lahman)
+a1<-Batting %>%
+    group_by(playerID)%>%
+    summarise(avg_HR = round(mean(HR, na.rm = TRUE)),
+              career_HR = sum(HR, na.rm = TRUE),
+              sum_H = sum(H, na.rm = TRUE),
+              sum_AB = sum(AB, na.rm = TRUE))%>%
+    mutate(bat_avg = round(sum_H/sum_AB,3))%>%
+    select(playerID, bat_avg, avg_HR, career_HR) %>%
+    arrange(desc(bat_avg))
 ```
 
-## Slide with Plot
+## Link to the app, github and a screenshot
 
+https://nsharma73.shinyapps.io/Baseball_HOF_Players/
+https://github.com/nsharma73/ddp4
+
+![App Image](app_screen.png){width=75%}
 ```{r pressure}
-plot(pressure)
+
 ```
 
