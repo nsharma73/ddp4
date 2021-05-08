@@ -6,45 +6,6 @@ library(tidyverse)
 library(Lahman)
 
 # Read baseball data from Lahman library and generate my data frame
-a1<-Batting %>%
-    group_by(playerID)%>%
-    summarise(avg_HR = round(mean(HR, na.rm = TRUE)),
-              career_HR = sum(HR, na.rm = TRUE),
-              sum_H = sum(H, na.rm = TRUE),
-              sum_AB = sum(AB, na.rm = TRUE))%>%
-    mutate(bat_avg = round(sum_H/sum_AB,3))%>%
-    select(playerID, bat_avg, avg_HR, career_HR) %>%
-    arrange(desc(bat_avg))
-
-a2<-a1%>%
-    inner_join(HallOfFame, a1, by=c("playerID")) %>%
-    filter((inducted == "Y") & (category == "Player"))%>%
-    select(playerID, bat_avg, avg_HR, career_HR, yearID, category)
-
-a3<- inner_join(a2, People, by=c("playerID")) %>%
-    select(playerID, yearID, nameFirst,	nameLast,	weight,	height, birthCountry,
-           bat_avg, avg_HR, career_HR, yearID, category)
-
-p1<-Pitching %>%
-    group_by(playerID)%>%
-    summarise(avg_ERA = mean(ERA))
-
-a4<-a3%>%
-    left_join(p1, a3, by=c("playerID")) %>%
-    select(playerID, yearID, nameFirst,	nameLast,	weight,	height, birthCountry,
-           bat_avg, avg_HR, career_HR, avg_ERA, yearID, category)
-
-df<-rename(a4, PlayerFirstName=nameFirst,
-           PlayerLastName=nameLast,
-           Year=yearID,
-           Weight=weight,
-           Height=height,
-           CountryOfBirth=birthCountry,
-           BattingAverage=bat_avg,
-           AverageHomeRuns=avg_HR,
-           CareerHomeRuns=career_HR,
-           AverageERA=avg_ERA,
-           Category=category)
 
 
 ####################################

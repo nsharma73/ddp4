@@ -1,0 +1,14 @@
+name: Baseball_HOF_Players
+title: Baseball_HOF_Players
+username:
+account: nsharma73
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4100515
+bundleId: 4574594
+url: https://nsharma73.shinyapps.io/Baseball_HOF_Players/
+when: 1620489008.83187
+lastSyncTime: 1620489008.83189
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .gitattributes|Presentation.Rmd|Readme.html|Readme.pdf|Readme.Rmd
